@@ -71,6 +71,9 @@ const locale = Astro.currentLocale || 'en_US';
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
 {siteConfig.twitter?.site && <meta name="twitter:site" content={siteConfig.twitter.site} />}
 {siteConfig.twitter?.creator && <meta name="twitter:creator" content={siteConfig.twitter.creator} />}
 

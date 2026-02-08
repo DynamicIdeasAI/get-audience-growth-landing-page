@@ -38,7 +38,26 @@ export default defineConfig({
 
   security: {
     checkOrigin: true,
-    csp: true,
+    csp: {
+      scriptDirective: {
+        resources: [
+          "'self'",
+          'https://www.googletagmanager.com',
+          'https://www.google-analytics.com',
+        ],
+      },
+      styleDirective: {
+        resources: [
+          "'self'",
+          'https://fonts.googleapis.com',
+        ],
+      },
+      directives: [
+        "font-src 'self' https://fonts.gstatic.com",
+        "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
+        "img-src 'self' data: https://www.googletagmanager.com",
+      ],
+    },
   },
 
   markdown: {

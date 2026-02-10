@@ -1,43 +1,71 @@
 ---
+/**
+ * TechStack — Component & Token Showcase
+ *
+ * Demonstrates Card, Badge, Icon components with design tokens
+ * and CSS utilities from the Velocity design system.
+ */
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 
 const stack = [
   {
-    name: 'Astro 6',
-    desc: 'Server islands & content layer',
+    name: 'Astro',
+    desc: 'Server islands, content layer, zero-JS by default',
     icon: 'brand-astro' as const,
+    version: 'v6',
+    color: 'oklch(62.5% 0.22 38)',  // Astro orange
+    bg: 'oklch(62.5% 0.22 38 / 0.1)',
   },
   {
-    name: 'Tailwind v4',
-    desc: 'Zero-runtime CSS engine',
+    name: 'Tailwind CSS',
+    desc: 'Lightning CSS engine, @theme API, OKLCH colors',
     icon: 'brand-tailwind' as const,
+    version: 'v4',
+    color: 'oklch(72% 0.14 210)',   // Tailwind sky
+    bg: 'oklch(72% 0.14 210 / 0.1)',
   },
   {
     name: 'TypeScript',
-    desc: 'Strict type safety defaults',
+    desc: 'Strict mode, path aliases, full type inference',
     icon: 'brand-typescript' as const,
+    version: '5.8+',
+    color: 'oklch(52% 0.15 260)',   // TypeScript blue
+    bg: 'oklch(52% 0.15 260 / 0.1)',
   },
   {
     name: 'React',
-    desc: 'Interactive components',
+    desc: 'Server components, actions, use() hook support',
     icon: 'brand-react' as const,
+    version: '19+',
+    color: 'oklch(78% 0.12 210)',   // React cyan
+    bg: 'oklch(78% 0.12 210 / 0.1)',
   },
 ];
 ---
 
 <section class="border-y border-border bg-background-secondary py-[var(--space-section-sm)]">
   <div class="mx-auto max-w-6xl px-6">
-    <div class="grid grid-cols-2 gap-[var(--space-stack-lg)] md:grid-cols-4">
-      {stack.map((item) => (
-        <div class="flex flex-col items-center gap-2 text-center md:items-start md:text-left">
-          <div class="flex items-center gap-2 text-foreground font-display font-bold text-lg">
-            <span class="text-brand-500">
-              <Icon name={item.icon} size="md" />
-            </span>
-            {item.name}
+    <div class="grid grid-cols-2 gap-[var(--space-content-gap)] md:grid-cols-4">
+      {stack.map((item, i) => (
+        <Card variant="elevated" padding="md" hover={true} class={`animate-slide-up delay-${i} text-center md:text-left`}>
+          <div class="flex flex-col items-center gap-[var(--space-stack-sm)] md:items-start">
+            <div class="flex w-full items-start justify-between">
+              <div
+                class="flex h-14 w-14 items-center justify-center rounded-full"
+                style={`background: ${item.bg};`}
+              >
+                <span style={`color: ${item.color};`}>
+                  <Icon name={item.icon} size="lg" />
+                </span>
+              </div>
+              <Badge variant="brand" size="sm" pill>{item.version}</Badge>
+            </div>
+            <span class="font-display text-lg font-bold text-foreground">{item.name}</span>
+            <p class="text-sm text-foreground-muted">{item.desc}</p>
           </div>
-          <p class="text-sm text-foreground-muted font-medium">{item.desc}</p>
-        </div>
+        </Card>
       ))}
     </div>
   </div>

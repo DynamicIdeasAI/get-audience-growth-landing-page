@@ -417,7 +417,7 @@ const defaultTab = tabs.find(t => t.id === defaultValue);
       const sheetOptions = container.querySelectorAll<HTMLButtonElement>('[data-vtab-sheet-option]');
 
       let isOpen = false;
-      let currentActiveTab = defaultTab;
+      let _currentActiveTab = defaultTab;
 
       // Initialize content panels
       contentElements.forEach((el) => {
@@ -579,7 +579,7 @@ const defaultTab = tabs.find(t => t.id === defaultValue);
       }
 
       function activateTab(id: string) {
-        currentActiveTab = id;
+        _currentActiveTab = id;
 
         // Update desktop triggers
         triggers.forEach((trigger) => {

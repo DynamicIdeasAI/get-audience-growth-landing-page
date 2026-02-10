@@ -54,7 +54,7 @@ export default defineConfig({
       directives: [
         "font-src 'self'",
         "connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com",
-        "img-src 'self' data: https://www.googletagmanager.com https://i.pravatar.cc",
+        "img-src 'self' data: https://www.googletagmanager.com https://i.pravatar.cc https://www.southwellmedia.com",
       ],
     },
   },

@@ -29,7 +29,8 @@
     "validate": "pnpm lint && pnpm check && pnpm build",
     "test": "vitest",
     "test:e2e": "playwright test",
-    "clear": "rm -rf dist .cache"
+    "clear": "rm -rf dist .cache",
+    "deploy": "yarn build && npx wrangler deploy"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",

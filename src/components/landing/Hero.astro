@@ -34,16 +34,14 @@ import SocialProof from '@/components/ui/marketing/SocialProof/SocialProof.astro
     content. One click to localize, one click to grow.
   </p>
 
-  <div slot="actions" class="flex flex-col gap-4 sm:flex-row">
-    <Button size="lg" href="/signup" class="bg-brand-600 hover:bg-brand-700">
-      Start Growing (Free Credits Included)
-      <Icon name="arrow-right" size="sm" />
-    </Button>
-    <Button size="lg" variant="outline" href="#demo">
-      <Icon name="play" size="sm" />
-      Watch Demo
-    </Button>
-  </div>
+  <Button slot="actions" size="lg" href="/signup" class="bg-growth-600 hover:bg-growth-700">
+    Start Growing (Free Credits Included)
+    <Icon name="arrow-right" size="sm" />
+  </Button>
+  <Button slot="actions" size="lg" variant="outline" href="#demo">
+    <Icon name="play" size="sm" />
+    Watch Demo
+  </Button>
 
   <div slot="aside" class="relative z-10 w-full lg:-mr-12 lg:min-w-[500px] xl:min-w-[600px]">
     <CulturalBridge />

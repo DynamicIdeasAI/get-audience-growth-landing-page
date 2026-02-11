@@ -1,10 +1,15 @@
 import { defineConfig, envField } from 'astro/config';
+import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  output: 'server',
+  adapter: cloudflare({
+    imageService: 'cloudflare',
+  }),
   site: process.env.SITE_URL || 'https://getaudiencegrowth.com',
 
   env: {
@@ -26,6 +31,11 @@ export default defineConfig({
   ],
 
   vite: {
+    resolve: {
+      alias: {
+        'react-dom/server': 'react-dom/server.edge',
+      },
+    },
     plugins: [tailwindcss()],
     // Mark native modules as external for OG image generation
     ssr: {

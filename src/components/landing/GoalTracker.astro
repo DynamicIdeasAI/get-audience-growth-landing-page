@@ -1,0 +1,145 @@
+---
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+
+interface Goal {
+  label: string;
+  current: number;
+  target: number;
+  unit: string;
+  color: string;
+}
+
+const goals: Goal[] = [
+  { label: 'Followers', current: 300, target: 1000, unit: '', color: 'var(--blue-500)' },
+  { label: 'Bookmarks', current: 500, target: 1000, unit: '+', color: 'var(--growth-500)' },
+  { label: 'Engagement', current: 85, target: 100, unit: '%', color: 'var(--brand-500)' },
+  { label: 'Authority', current: 92, target: 100, unit: '/100', color: 'var(--brand-300)' },
+];
+---
+
+<section class="bg-background-secondary border-border border-y py-[var(--space-section-sm)]">
+  <div class="mx-auto max-w-6xl px-6">
+    <!-- Header -->
+    <div class="mb-[var(--space-section-header)] text-center">
+      <div class="mb-4 flex justify-center">
+        <Badge variant="brand" class="border-brand-500/30 text-brand-600 bg-brand-500/5"
+          >Path to Authority</Badge
+        >
+      </div>
+      <h3 class="font-display text-foreground text-2xl font-bold md:text-3xl">
+        Measurable Growth. <span class="text-growth-500">Real Impact.</span>
+      </h3>
+    </div>
+
+    <!-- Goals Grid -->
+    <div
+      class="goal-tracker mx-auto grid max-w-4xl grid-cols-2 gap-[var(--space-content-gap)] md:grid-cols-4"
+      role="list"
+      aria-label="Growth Goals"
+    >
+      {
+        goals.map((goal, index) => (
+          <div
+            class="goal-card group flex flex-col items-center"
+            role="listitem"
+            style={`--delay: ${index * 100}ms; --goal-color: ${goal.color}`}
+          >
+            {/* Circular gauge */}
+            <div class="relative mb-3">
+              <svg class="gauge h-24 w-24" viewBox="0 0 120 120" aria-hidden="true">
+                {/* Outer track */}
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="8"
+                  class="text-background-tertiary"
+                />
+                {/* Progress arc */}
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="var(--goal-color)"
+                  stroke-width="8"
+                  stroke-linecap="round"
+                  stroke-dasharray="339.292"
+                  stroke-dashoffset="339.292"
+                  class="goal-progress"
+                  style={`--progress-offset: ${339.292 - 339.292 * (goal.current / goal.target)}; transform: rotate(-90deg); transform-origin: center;`}
+                />
+                {/* Value */}
+                <text
+                  x="60"
+                  y="60"
+                  text-anchor="middle"
+                  dominant-baseline="central"
+                  class="fill-foreground font-mono font-bold tracking-tighter"
+                  style="font-size: 20px;"
+                >
+                  {goal.current}
+                  {goal.unit}
+                </text>
+              </svg>
+
+              {/* Pulse effect behind */}
+              <div class="absolute inset-0 rounded-full bg-[var(--goal-color)] opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-10" />
+            </div>
+
+            {/* Label */}
+            <span class="text-foreground-muted text-center text-sm font-medium tracking-wide uppercase">
+              {goal.label}
+            </span>
+            <span class="text-foreground-subtle mt-1 text-xs">
+              Target: {goal.target}
+              {goal.unit}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Animations */
+  .goal-card {
+    animation: fade-up 0.6s ease-out both;
+    animation-delay: var(--delay);
+  }
+
+  .goal-progress {
+    animation: progress-fill 1.5s ease-out forwards;
+    animation-delay: calc(0.3s + var(--delay));
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes progress-fill {
+    to {
+      stroke-dashoffset: var(--progress-offset);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .goal-card,
+    .goal-progress {
+      animation: none;
+    }
+    .goal-progress {
+      stroke-dashoffset: var(--progress-offset);
+    }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+
+const plans = [
+  {
+    name: 'Starter',
+    credits: 50,
+    price: '$19',
+    perCredit: '$0.38/credit',
+    features: ['Access to all Engines', 'Basic Analytics', 'Community Support'],
+    variant: 'outline',
+    popular: false,
+  },
+  {
+    name: 'Pro',
+    credits: 200,
+    price: '$49',
+    perCredit: '$0.25/credit',
+    features: ['Access to all Engines', 'Advanced Analytics', 'Priority Support', 'Draft History'],
+    variant: 'outline',
+    popular: true,
+  },
+  {
+    name: 'Growth',
+    credits: 500,
+    price: '$99',
+    perCredit: '$0.20/credit',
+    features: [
+      'Access to all Engines',
+      'Pro Analytics',
+      'Dedicated Support',
+      'Draft History',
+      'Team Seats (up to 3)',
+    ],
+    variant: 'primary',
+    popular: false, // User request said "Growth: 500 Credits" marked as Best Value, adjusting implementation below
+  },
+];
+---
+
+<section id="pricing" class="py-[var(--space-section-lg)]">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto mb-16 max-w-2xl text-center">
+      <h2 class="font-display mb-4 text-4xl font-bold">Simple, Transparency Pricing</h2>
+      <p class="text-foreground-muted text-lg">
+        Refill as you grow. No subscription traps. <span class="text-foreground font-medium"
+          >Credits never expire.</span
+        >
+      </p>
+    </div>
+
+    <div class="grid items-start gap-8 md:grid-cols-3">
+      {
+        plans.map((plan) => (
+          <Card
+            class={`hover:border-brand-500/50 relative flex flex-col p-8 transition-all duration-300 ${plan.name === 'Growth' ? 'border-brand-500 shadow-brand-500/10 z-10 scale-105 shadow-xl' : 'border-border'}`}
+          >
+            {plan.name === 'Growth' && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+                <Badge pill class="bg-brand-500 border-brand-600 text-white shadow-sm">
+                  Best Value
+                </Badge>
+              </div>
+            )}
+
+            <div class="mb-6">
+              <h3 class="font-display text-foreground text-xl font-bold">{plan.name}</h3>
+              <div class="mt-4 flex items-baseline gap-1">
+                <span class="text-foreground text-4xl font-bold tracking-tight">{plan.price}</span>
+                <span class="text-foreground-muted">/ {plan.credits} credits</span>
+              </div>
+              <p class="text-foreground-subtle mt-1 font-mono text-xs">{plan.perCredit}</p>
+            </div>
+
+            <div class="mb-8 flex-1 space-y-4">
+              {plan.features.map((feature) => (
+                <div class="text-foreground-secondary flex items-start gap-3 text-sm">
+                  <Icon
+                    name="check"
+                    class={`h-5 w-5 shrink-0 ${plan.name === 'Growth' ? 'text-brand-500' : 'text-foreground-muted'}`}
+                  />
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <Button
+              variant={plan.name === 'Growth' ? 'primary' : 'outline'}
+              class="w-full justify-center"
+              size="lg"
+            >
+              Choose {plan.name}
+            </Button>
+          </Card>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="text-foreground-muted text-sm">
+        Looking for an Enterprise plan? <a href="#" class="text-brand-500 hover:underline"
+          >Contact us</a
+        >
+      </p>
+    </div>
+  </div>
+</section>

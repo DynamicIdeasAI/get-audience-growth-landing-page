@@ -1,0 +1,113 @@
+---
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Card from '@/components/ui/data-display/Card/Card.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+---
+
+<div class="mx-auto w-full max-w-4xl">
+  <div class="relative">
+    {/* Decorative elements */}
+    <div
+      class="from-brand-500 to-growth-500 absolute -inset-1 rounded-2xl bg-gradient-to-r opacity-20 blur-xl"
+    >
+    </div>
+
+    <Card
+      class="border-border-strong bg-background-secondary/50 relative overflow-hidden backdrop-blur-sm"
+    >
+      {/* Toolbar */}
+      <div
+        class="border-border bg-background-tertiary/50 flex items-center justify-between border-b p-4"
+      >
+        <div class="flex items-center gap-2">
+          <div class="flex gap-1.5">
+            <div class="h-3 w-3 rounded-full border border-red-500/50 bg-red-500/20"></div>
+            <div class="h-3 w-3 rounded-full border border-yellow-500/50 bg-yellow-500/20"></div>
+            <div class="h-3 w-3 rounded-full border border-green-500/50 bg-green-500/20"></div>
+          </div>
+          <div class="bg-border mx-2 h-4 w-px"></div>
+          <span class="text-foreground-muted font-mono text-xs">reply-engine.ts</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div
+            class="bg-background border-border flex items-center gap-2 rounded-full border px-2 py-1"
+          >
+            <div class="bg-growth-500 h-2 w-2 animate-pulse rounded-full"></div>
+            <span class="text-foreground-secondary text-xs font-medium">Human-in-Loop: ON</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Editor Area */}
+      <div class="divide-border grid divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
+        {/* Input: Native/Rough Notes */}
+        <div class="space-y-4 p-6">
+          <div class="mb-2 flex items-center justify-between">
+            <span class="text-foreground-muted font-mono text-xs tracking-wider uppercase"
+              >Input (Rough Notes)</span
+            >
+          </div>
+          <div class="text-foreground-muted font-mono text-sm leading-relaxed opacity-70">
+            > great point about serverless cold starts.<br />
+            > i face this too with lambda.<br />
+            > maybe mention snapstart?<br />
+            > helps a lot with java functions.
+          </div>
+        </div>
+
+        {/* Output: Refined English */}
+        <div class="bg-background/30 relative p-6">
+          <div class="mb-4 flex items-center justify-between">
+            <span class="text-brand-400 font-mono text-xs tracking-wider uppercase"
+              >Output (Authority Optimization)</span
+            >
+            <Badge
+              variant="success"
+              size="sm"
+              class="bg-growth-500/10 text-growth-500 border-growth-500/20"
+            >
+              Ready to Post
+            </Badge>
+          </div>
+
+          <div class="space-y-4">
+            <p class="text-foreground font-sans text-base leading-relaxed">
+              Spot on regarding serverless cold starts. It's a persistent challenge, especially with
+              JVM-based runtimes.
+            </p>
+            <p class="text-foreground font-sans text-base leading-relaxed">
+              Have you explored <span class="bg-brand-500/20 text-brand-300 rounded px-1"
+                >AWS SnapStart</span
+              >? It significantly reduces initialization latency for Java functions by caching
+              memory snapshots. A game changer for user-facing APIs.
+            </p>
+
+            <div class="flex items-center gap-2 pt-4">
+              <Button size="sm" variant="outline" class="h-8 border-dashed text-xs">
+                <Icon name="pencil" class="mr-1.5 h-3.5 w-3.5" />
+                Edit
+              </Button>
+              <Button
+                size="sm"
+                class="bg-brand-600 hover:bg-brand-700 h-8 border-none text-xs text-white"
+              >
+                <Icon name="brand-twitter" class="mr-1.5 h-3.5 w-3.5" />
+                Post Reply
+              </Button>
+            </div>
+          </div>
+
+          {/* AI Processing Indicator overlay (simulated) */}
+          <div class="pointer-events-none absolute top-0 right-0 p-6">
+            <div class="text-brand-400/80 flex items-center gap-1.5 font-mono text-xs">
+              <Icon name="sparkles" class="h-3 w-3" />
+              <span>Tone: Professional</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Card>
+  </div>
+</div>

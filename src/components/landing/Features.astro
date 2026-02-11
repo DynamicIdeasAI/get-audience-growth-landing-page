@@ -1,0 +1,81 @@
+---
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+
+const features = [
+  {
+    title: 'Relatability Engine',
+    description:
+      'Optimize for engagement and conversation. Connect with peers on a human level while maintaining technical credibility.',
+    icon: 'heart',
+    badge: 'Likes & Replies',
+    color: 'var(--brand-500)',
+    borderColor: 'var(--brand-200)',
+    delay: '0ms',
+  },
+  {
+    title: 'Utility Engine',
+    description:
+      'Transform raw technical updates into "save-worthy" value-bombs. Turn your daily work into educational resources.',
+    icon: 'bookmark',
+    badge: 'Bookmarks',
+    color: 'var(--growth-500)',
+    borderColor: 'var(--growth-200)',
+    delay: '100ms',
+  },
+  {
+    title: 'Authority Engine',
+    description:
+      'Establish your persona as a North American-level tech lead. Consistency and clarity that builds global trust.',
+    icon: 'award',
+    badge: 'Followers',
+    color: 'var(--blue-500)',
+    borderColor: 'var(--blue-200)',
+    delay: '200ms',
+  },
+];
+---
+
+<section id="features" class="relative overflow-hidden py-[var(--space-section-lg)]">
+  <div class="relative z-10 mx-auto max-w-6xl px-6">
+    <div class="mx-auto mb-16 max-w-2xl text-center">
+      <Badge variant="default" class="mb-4">The 3 Growth Pillars</Badge>
+      <h2 class="font-display mb-6 text-4xl font-bold md:text-5xl">
+        Engineered for <span class="text-brand-500">Maximum Impact</span>
+      </h2>
+      <p class="text-foreground-muted text-lg">
+        Stop guessing what works. Our logic-based engines optimize your content for specific growth
+        outcomes.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-3 lg:gap-8">
+      {
+        features.map((feature) => (
+          <div
+            class="group bg-background-secondary border-border relative rounded-2xl border p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[color:var(--highlight-color)] hover:shadow-lg"
+            style={`--highlight-color: ${feature.borderColor}; animation-delay: ${feature.delay}`}
+          >
+            {/* Top highlight line */}
+            <div class="absolute top-0 right-8 left-8 h-px bg-gradient-to-r from-transparent via-[color:var(--highlight-color)] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+            <div class="mb-6 flex items-start justify-between">
+              <div
+                class="bg-background border-border flex h-12 w-12 items-center justify-center rounded-xl border shadow-sm transition-transform duration-300 group-hover:scale-110"
+                style={`color: ${feature.color}`}
+              >
+                <Icon name={feature.icon} size="lg" />
+              </div>
+              <Badge variant="default" size="sm" class="font-mono text-xs">
+                {feature.badge}
+              </Badge>
+            </div>
+
+            <h3 class="text-foreground font-display mb-3 text-xl font-bold">{feature.title}</h3>
+            <p class="text-foreground-secondary text-sm leading-relaxed">{feature.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,62 @@
+---
+import { Hero as HeroPrimitive } from '@/components/hero';
+import CulturalBridge from '@/components/landing/CulturalBridge.astro';
+import Button from '@/components/ui/form/Button/Button.astro';
+import Icon from '@/components/ui/primitives/Icon/Icon.astro';
+import Badge from '@/components/ui/data-display/Badge/Badge.astro';
+import SocialProof from '@/components/ui/marketing/SocialProof/SocialProof.astro';
+---
+
+<HeroPrimitive
+  layout="split"
+  size="lg"
+  showGrid
+  showBlob
+  blobPosition="right"
+  class="overflow-visible pb-0"
+>
+  <Badge
+    slot="badge"
+    pill
+    pulse
+    variant="brand"
+    class="bg-brand-500/10 text-brand-500 border-brand-500/20"
+  >
+    v1.0 is Live
+  </Badge>
+
+  <h1 slot="title">
+    Your Technical Voice, <span class="text-brand-500">Optimized for Global Impact.</span>
+  </h1>
+
+  <p slot="description">
+    The AI-powered growth engine for non-native founders. Turn raw thoughts into high-authority X
+    content. One click to localize, one click to grow.
+  </p>
+
+  <div slot="actions" class="flex flex-col gap-4 sm:flex-row">
+    <Button size="lg" href="/signup" class="bg-brand-600 hover:bg-brand-700">
+      Start Growing (Free Credits Included)
+      <Icon name="arrow-right" size="sm" />
+    </Button>
+    <Button size="lg" variant="outline" href="#demo">
+      <Icon name="play" size="sm" />
+      Watch Demo
+    </Button>
+  </div>
+
+  <div slot="aside" class="relative z-10 w-full lg:-mr-12 lg:min-w-[500px] xl:min-w-[600px]">
+    <CulturalBridge />
+  </div>
+
+  <SocialProof
+    slot="default"
+    class="mt-[var(--space-stack-lg)]"
+    text="Trusted by 500+ Technical Founders"
+    avatars={[
+      'https://i.pravatar.cc/150?img=11',
+      'https://i.pravatar.cc/150?img=33',
+      'https://i.pravatar.cc/150?img=59',
+    ]}
+  />
+</HeroPrimitive>

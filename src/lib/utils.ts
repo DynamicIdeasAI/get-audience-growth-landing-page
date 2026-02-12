@@ -1,33 +1,22 @@
-/**
- * Format a date for display
- */
-export function formatDate(date: Date, locale = 'en-US'): string {
-  return new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+export function isExternalUrl(url: string) {
+  return url.startsWith('http') || url.startsWith('//');
+}
+
+export function generateId(prefix = 'id') {
+  return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
+}
+
+export function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('en-US', {
     month: 'long',
     day: 'numeric',
+    year: 'numeric',
   }).format(date);
-}
-
-/**
- * Calculate reading time for content
- */
-export function getReadingTime(content: string): number {
-  const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  return Math.ceil(words / wordsPerMinute);
-}
-
-/**
- * Generate a unique ID
- */
-export function generateId(prefix = 'id'): string {
-  return `${prefix}-${Math.random().toString(36).slice(2, 9)}`;
-}
-
-/**
- * Check if a URL is external
- */
-export function isExternalUrl(url: string): boolean {
-  return url.startsWith('http://') || url.startsWith('https://');
 }

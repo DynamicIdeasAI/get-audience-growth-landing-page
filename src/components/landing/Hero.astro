@@ -5,6 +5,7 @@ import Button from '@/components/ui/form/Button/Button.astro';
 import Icon from '@/components/ui/primitives/Icon/Icon.astro';
 import Badge from '@/components/ui/data-display/Badge/Badge.astro';
 import SocialProof from '@/components/ui/marketing/SocialProof/SocialProof.astro';
+import LaserFlow from '@/components/LaserFlow';
 ---
 
 <HeroPrimitive
@@ -45,6 +46,28 @@ import SocialProof from '@/components/ui/marketing/SocialProof/SocialProof.astro
 
   <div slot="aside" class="relative z-10 w-full lg:-mr-12 lg:min-w-[500px] xl:min-w-[600px]">
     <CulturalBridge />
+    <div
+      class="pointer-events-none absolute top-0 left-1/2 z-20 -translate-x-1/2 -translate-y-full mix-blend-screen"
+    >
+      <div style={{ width: '1080px', height: '1080px', position: 'relative' }}>
+        <LaserFlow
+          client:load
+          color="#fbc17e"
+          wispDensity={1}
+          flowSpeed={0.35}
+          verticalSizing={2}
+          horizontalSizing={0.5}
+          fogIntensity={0.45}
+          fogScale={0.3}
+          wispSpeed={15}
+          wispIntensity={5}
+          flowStrength={0.25}
+          decay={1.1}
+          horizontalBeamOffset={0}
+          verticalBeamOffset={-0.5}
+        />
+      </div>
+    </div>
   </div>
 
   <SocialProof

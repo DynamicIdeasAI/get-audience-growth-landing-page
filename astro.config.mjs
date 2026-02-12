@@ -5,7 +5,14 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
+
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export default defineConfig({
+
   output: 'server',
   adapter: cloudflare({
     imageService: 'cloudflare',
@@ -31,7 +38,12 @@ export default defineConfig({
   ],
 
   vite: {
-
+    resolve: {
+      conditions: ['workerd', 'worker', 'browser'],
+      alias: {
+        'react-dom/server': './src/lib/react-dom-server-shim.ts',
+      },
+    },
     plugins: [tailwindcss()],
     // Mark native modules as external for OG image generation
     ssr: {

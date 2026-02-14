@@ -3,6 +3,6 @@
 import { MessageChannel } from 'node:worker_threads';
 
 if (!globalThis.MessageChannel) {
-  // @ts-ignore
+  // @ts-expect-error - polyfilling MessageChannel for Cloudflare Workers environment
   globalThis.MessageChannel = MessageChannel;
 }

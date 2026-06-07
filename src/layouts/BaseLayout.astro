@@ -79,7 +79,7 @@ if (includeOrgSchema) {
     <!-- Theme script (runs before render to prevent flash) -->
     <script is:inline>
       (function () {
-        const theme = localStorage.getItem('theme');
+        const theme = 'dark';// localStorage.getItem('theme');
         const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (theme === 'dark' || (!theme && systemDark)) {
